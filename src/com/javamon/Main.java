@@ -7,8 +7,12 @@ package com.javamon;
         Query1 selectq = new Query1();
         selectq.Query1();
 
+        GameTimer timer = new GameTimer();
+        timer.startTimer();
+
         Menu showMenu = new Menu();
         showMenu.printMenu();
+
 
     }
 }
