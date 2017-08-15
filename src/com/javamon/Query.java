@@ -2,9 +2,9 @@ package com.javamon;
 
 import java.sql.*;
 
-class Query1 {
+class Query {
 
-    static void Query1() {
+    static void Query(String sqlQuery) {
         try {
             Personal userData = new Personal();
             String username = userData.getUsername();
@@ -22,7 +22,7 @@ class Query1 {
             Statement stmt = conn.createStatement();
             ResultSet rs;
 
-            rs = stmt.executeQuery("SELECT name FROM phrase WHERE id = 2");
+            rs = stmt.executeQuery(sqlQuery);
             while ( rs.next() ) {
                 String name = rs.getString("name");
                 System.out.println(name);

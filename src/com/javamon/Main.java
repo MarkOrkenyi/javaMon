@@ -6,8 +6,9 @@ package com.javamon;
 
 
 
-        Query1 selectq = new Query1();
-        selectq.Query1();
+        Query selectq = new Query();
+        Queries.registerAccount("asdfewfwe", "gvfewfwefwee");
+
 
     }
 }
