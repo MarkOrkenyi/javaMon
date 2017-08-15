@@ -4,8 +4,10 @@ package com.javamon;
 
     public static void main(String[] args) {
 
-        DatabaseConnection connection = new DatabaseConnection();
-        connection.DatabaseConnection();
+
+
+        Query1 selectq = new Query1();
+        selectq.Query1();
 
     }
 }

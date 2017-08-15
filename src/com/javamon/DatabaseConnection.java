@@ -23,7 +23,7 @@ public class DatabaseConnection {
 
         System.out.println("PostgreSQL JDBC Driver Registered!");
 
-        Connection connection = null;
+        Connection connection;
 
         try {
 
