@@ -81,5 +81,5 @@ fabric.properties
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-.src/com/javmon/Personal.java
+.src/com/javamon/Personal.java
 # End of https://www.gitignore.io/api/java,intellij
