@@ -12,7 +12,5 @@ package com.javamon;
 
         Menu showMenu = new Menu();
         showMenu.printMenu();
-
-
     }
 }
