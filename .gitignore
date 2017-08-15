@@ -10,7 +10,7 @@
 .idea/dictionaries
 
 #unique files
-.src/com/javamon/Personal.java
+src/com/javamon/Personal.java
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
