@@ -24,6 +24,8 @@ public class Menu {
                     //starts game
                     incorrectData = false;
                     System.out.println("start");
+                    GameTimer timer = new GameTimer();
+                    timer.startTimer();
 
                 } else if (enteredNum == 2) {
                     // shows high score
