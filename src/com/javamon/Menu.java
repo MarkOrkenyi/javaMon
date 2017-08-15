@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Menu {
 
     public static void printMenu () {
-
         boolean incorrectData = true;
 
         while (incorrectData == true ) {
