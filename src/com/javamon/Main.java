@@ -4,10 +4,11 @@ package com.javamon;
 
     public static void main(String[] args) {
 
-
-
         Query1 selectq = new Query1();
         selectq.Query1();
+
+        Menu showMenu = new Menu();
+        showMenu.printMenu();
 
     }
 }
