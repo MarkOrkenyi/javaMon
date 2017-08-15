@@ -28,8 +28,8 @@ public class DatabaseConnection {
         try {
 
             connection = DriverManager.getConnection(
-                    "jdbc:postgresql://127.0.0.1/javamon", "ketam",
-                    "asdasd");
+                    "jdbc:postgresql://127.0.0.1/javamon", "exworm",
+                    "fanatic99");
 
         } catch (SQLException e) {
 
