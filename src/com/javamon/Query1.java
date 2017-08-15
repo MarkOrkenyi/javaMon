@@ -6,9 +6,17 @@ class Query1 {
 
     static void Query1() {
         try {
+            Personal userData = new Personal();
+            String username = userData.getUsername();
+            String password = userData.getPassword();
+            String dbUrl = userData.getUrl();
 
-            String url = "jdbc:postgresql://127.0.0.1/javamon";
-            Connection conn = DriverManager.getConnection(url,"ketam","asdasd");
+            String url = dbUrl;
+            Connection conn = DriverManager.getConnection(url,username,password
+            );
+
+
+
 
             // Connection conn = DriverManager.getConnection();
             Statement stmt = conn.createStatement();
