@@ -12,7 +12,8 @@ public class Menu {
             String menuItem = "1.) Start game\n" +
                     "2.) High scores\n" +
                     "3.) Registration\n" +
-                    "4.) User login";
+                    "4.) User login\n" +
+                    "0.) Exit game";
             System.out.println(menuItem);
 
             Scanner userInput = new Scanner(System.in);
@@ -37,6 +38,9 @@ public class Menu {
                     // user login
                     incorrectData = false;
                     System.out.print("login");
+                } else if (enteredNum == 0) {
+                    System.out.println("thanks for playing JavaMon");
+                    System.exit(0);
                 } else {
                     System.out.println("choose between 1, 2 or 3");
                 }
