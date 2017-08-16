@@ -3,9 +3,9 @@ package com.javamon;
 import java.sql.*;
 import java.util.ArrayList;
 
-class Query {
+class UseDb {
 
-    static ArrayList<String> Query(String sqlQuery, String columnName) {
+    static ArrayList<String> runQuery(String sqlQuery, String columnName) {
         try {
             Personal userData = new Personal();
             String username = userData.getUsername();
@@ -19,16 +19,23 @@ class Query {
 
             Statement stmt = conn.createStatement();
             ResultSet rs;
+            try {
+                rs = stmt.executeQuery(sqlQuery);
+                ArrayList<String> results = new ArrayList<>();
+                while (rs.next()) {
+                    String addToList = rs.getString(columnName);
+                    results.add(addToList);
 
-            rs = stmt.executeQuery(sqlQuery);
-            ArrayList<String> results = new ArrayList<>();
-            while ( rs.next() ) {
-                String addToList = rs.getString(columnName);
-                results.add(addToList);
-
+                }
+                return results;
+            } catch (SQLException e){
+                ArrayList<String> message = new ArrayList<>();
+                return message;
             }
-            conn.close();
-            return results;
+            finally {
+                conn.close();
+            }
+
         } catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
