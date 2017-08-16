@@ -6,9 +6,9 @@ import java.util.Scanner;
 public class Menu {
 
     public static boolean userLoggedInSuccess = false;
+    public static boolean correctData = false;
 
-    public static void printMenu () {
-        boolean correctData = false;
+    public static void printMenu() {
 
         while (correctData == false ) {
             String menuItem = "1.) Start game\n" +
@@ -25,60 +25,16 @@ public class Menu {
                 int enteredNum = userInput.nextInt();
                 if (enteredNum == 1) {
                     //starts game
-
-                    if (userLoggedInSuccess) {
-                        System.out.println("Register and/or log in first");
-                    } else {
-                        correctData = true;
-                        GameTimer timer = new GameTimer();
-                        timer.startTimer();
-                    }
-
-
+                    MenuMethods.startGame();
                 } else if (enteredNum == 2) {
                     // shows high score
-                    correctData = true;
-                    System.out.println("highscore");
+                    MenuMethods.highScores();
                 } else if (enteredNum == 3) {
                     // user registration
-                    correctData = true;
-                    System.out.print("Enter username: ");
-                    Scanner username = new Scanner(System.in);
-                    String un = username.next();
-                    System.out.print("Enter password: ");
-                    Scanner password = new Scanner(System.in);
-                    String pw = password.next();
-                    Hash hashPw = new Hash();
-                    String hashedPassW = hashPw.HashPass(pw);
-                    Queries.registerAccount(un, hashedPassW);
-
-
-
+                    MenuMethods.registration();
                 } else if (enteredNum == 4) {
                     // user login
-                    correctData = true;
-
-                    System.out.print("Enter your username: ");
-                    Scanner logInUsername = new Scanner(System.in);
-                    String loginName = logInUsername.next();
-                    String userExist = Queries.checkUserExist(loginName);
-                    if (userExist != "error"){
-                        System.out.print("Enter your password: ");
-                        Scanner loginPassword = new Scanner(System.in);
-                        String loginPw = loginPassword.next();
-                        Queries hashedPwFromDb = new Queries();
-                        String pwFromDb = hashedPwFromDb.getPasswordHash(loginName);
-                        Hash.CheckHash(loginPw, pwFromDb);
-                    } else {
-                       printMenu();
-                    }
-
-                    if (userLoggedInSuccess) {
-                        String LoggedInUserName = loginName;
-                        System.out.println(LoggedInUserName + " logged in");
-                    }
-
-
+                    MenuMethods.login();
                 } else if (enteredNum == 0) {
                     System.out.println("thanks for playing JavaMon");
                     System.exit(0);
