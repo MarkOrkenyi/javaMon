@@ -2,6 +2,8 @@ package com.javamon;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.TreeMap;
+import java.util.Map;
 
 public class Queries {
     public static String registerAccount(String username, String password) {
@@ -9,9 +11,14 @@ public class Queries {
         UseDb.runQuery(query, "name");
         return "success";
     }
-    public static void getHighscore() {
-        UseDb.runQuery("SELECT name FROM users ORDER BY score DESC LIMIT 10;", "name");
-        UseDb.runQuery("SELECT score FROM users ORDER BY score DESC LIMIT 10;", "score");
+    public static TreeMap getHighscore() {
+        /*Map<String, Integer> usersScores = new TreeMap<>();
+        String name;
+        int score;
+        String query = String.format("SELECT name FROM users ORDER BY score DESC LIMIT 10;");
+        ArrayList<String> scoreName = UseDb.runQuery(query, "password");
+        String query2 = String.format("SELECT score FROM users ORDER BY score DESC LIMIT 10;");
+        ArrayList<Integer> scores = UseDb.runQuery(query2, "score");*/
     }
     public static void updateScore(String username) {
         String query = String.format("UPDATE users SET score = score + 1 WHERE name = '%s';",username);
