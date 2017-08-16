@@ -4,11 +4,10 @@ package com.javamon;
 
     public static void main(String[] args) {
 
-
-
         Query selectq = new Query();
         Queries.registerAccount("asdfasdsdsdsdewfwe", "gvfewf11111111wefwee");
 
-
+        Menu showMenu = new Menu();
+        showMenu.printMenu();
     }
 }
