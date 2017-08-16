@@ -9,7 +9,7 @@ public class Hash {
         return hashedPw;
     }
 
-    public void CheckHash (String candidate, String hashed) {
+    public static void CheckHash (String candidate, String hashed) {
         if (checkpw(candidate, hashed)) {
             System.out.println("Logged in successfully!");
         } else

@@ -1,10 +1,11 @@
 package com.javamon;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 class Query {
 
-    static void Query(String sqlQuery) {
+    static ArrayList<String> Query(String sqlQuery, String columnName) {
         try {
             Personal userData = new Personal();
             String username = userData.getUsername();
@@ -16,21 +17,23 @@ class Query {
             );
 
 
-
-
-            // Connection conn = DriverManager.getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs;
 
             rs = stmt.executeQuery(sqlQuery);
+            ArrayList<String> results = new ArrayList<>();
             while ( rs.next() ) {
-                String name = rs.getString("name");
-                System.out.println(name);
+                String addToList = rs.getString(columnName);
+                results.add(addToList);
+
             }
             conn.close();
+            return results;
         } catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
         }
+
+        return null;
     }
 }
