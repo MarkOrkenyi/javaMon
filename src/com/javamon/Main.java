@@ -4,8 +4,8 @@ package com.javamon;
 
     public static void main(String[] args) {
 
-        Query1 selectq = new Query1();
-        selectq.Query1();
+        Query selectq = new Query();
+        Queries.registerAccount("asdfasdsdsdsdewfwe", "gvfewf11111111wefwee");
 
         Menu showMenu = new Menu();
         showMenu.printMenu();
