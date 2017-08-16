@@ -43,7 +43,7 @@ public class Menu {
                     System.out.println("thanks for playing JavaMon");
                     System.exit(0);
                 } else {
-                    System.out.println("choose between 1, 2 or 3");
+                    System.out.println("choose between 1, 2, 3, 4 or 0");
                 }
             } else {
                 System.out.println("not number, try again");
