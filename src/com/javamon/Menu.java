@@ -23,7 +23,6 @@ public class Menu {
                 if (enteredNum == 1) {
                     //starts game
                     incorrectData = false;
-                    System.out.println("start");
                     GameTimer timer = new GameTimer();
                     timer.startTimer();
 
@@ -34,7 +33,17 @@ public class Menu {
                 } else if (enteredNum == 3) {
                     // user registration
                     incorrectData = false;
-                    System.out.println("reg");
+                    System.out.print("Enter username: ");
+                    Scanner username = new Scanner(System.in);
+                    String un = username.next();
+                    System.out.print("Enter password: ");
+                    Scanner password = new Scanner(System.in);
+                    String pw = password.next();
+                    Hash hashPw = new Hash();
+                    String hashedPassW = hashPw.HashPass(pw);
+                    System.out.println(hashedPassW);
+                    Query selectq = new Query();
+                    Queries.registerAccount(un, hashedPassW);
                 } else if (enteredNum == 4) {
                     // user login
                     incorrectData = false;
