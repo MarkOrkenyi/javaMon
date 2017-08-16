@@ -5,10 +5,12 @@ import java.util.Scanner;
 
 public class Menu {
 
-    public static void printMenu () {
-        boolean incorrectData = true;
+    public static boolean userLoggedInSuccess = false;
 
-        while (incorrectData == true ) {
+    public static void printMenu () {
+        boolean correctData = false;
+
+        while (correctData == false ) {
             String menuItem = "1.) Start game\n" +
                     "2.) High scores\n" +
                     "3.) Registration\n" +
@@ -23,22 +25,26 @@ public class Menu {
                 int enteredNum = userInput.nextInt();
                 if (enteredNum == 1) {
                     //starts game
-                    incorrectData = false;
-                    GameTimer timer = new GameTimer();
-                    timer.startTimer();
+
+                    if (userLoggedInSuccess) {
+                        System.out.println("Register and/or log in first");
+                    } else {
+                        correctData = true;
+                        GameTimer timer = new GameTimer();
+                        timer.startTimer();
+                    }
+
 
                 } else if (enteredNum == 2) {
                     // shows high score
-                    incorrectData = false;
+                    correctData = true;
                     System.out.println("highscore");
                 } else if (enteredNum == 3) {
                     // user registration
-
-                    incorrectData = false;
+                    correctData = true;
                     System.out.print("Enter username: ");
                     Scanner username = new Scanner(System.in);
                     String un = username.next();
-                    
                     System.out.print("Enter password: ");
                     Scanner password = new Scanner(System.in);
                     String pw = password.next();
@@ -47,19 +53,30 @@ public class Menu {
                     Queries.registerAccount(un, hashedPassW);
 
 
+
                 } else if (enteredNum == 4) {
                     // user login
-                    incorrectData = false;
+                    correctData = true;
+
                     System.out.print("Enter your username: ");
                     Scanner logInUsername = new Scanner(System.in);
                     String loginName = logInUsername.next();
-                    System.out.print("Enter your password: ");
-                    Scanner loginPassword = new Scanner(System.in);
-                    String loginPw = loginPassword.next();
-                    Queries hashedPwFromDb = new Queries();
-                    String pwFromDb = hashedPwFromDb.getPasswordHash(loginName);
+                    String userExist = Queries.checkUserExist(loginName);
+                    if (userExist != "error"){
+                        System.out.print("Enter your password: ");
+                        Scanner loginPassword = new Scanner(System.in);
+                        String loginPw = loginPassword.next();
+                        Queries hashedPwFromDb = new Queries();
+                        String pwFromDb = hashedPwFromDb.getPasswordHash(loginName);
+                        Hash.CheckHash(loginPw, pwFromDb);
+                    } else {
+                       printMenu();
+                    }
 
-                    Hash.CheckHash(loginPw, pwFromDb);
+                    if (userLoggedInSuccess) {
+                        String LoggedInUserName = loginName;
+                        System.out.println(LoggedInUserName + " logged in");
+                    }
 
 
                 } else if (enteredNum == 0) {

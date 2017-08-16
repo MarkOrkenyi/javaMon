@@ -11,6 +11,7 @@ public class Hash {
 
     public static void CheckHash (String candidate, String hashed) {
         if (checkpw(candidate, hashed)) {
+            Menu.userLoggedInSuccess = true;
             System.out.println("Logged in successfully!");
         } else
             System.out.println("Wrong username or password!");

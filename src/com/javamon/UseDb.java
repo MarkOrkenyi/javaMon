@@ -29,8 +29,10 @@ class UseDb {
                 }
                 return results;
             } catch (SQLException e){
-                ArrayList<String> message = new ArrayList<>();
-                return message;
+                if (e.getSQLState().equals("23505")) {
+                    System.out.println("Username already taken, choose another one!");
+                    Menu.printMenu();
+                }
             }
             finally {
                 conn.close();
