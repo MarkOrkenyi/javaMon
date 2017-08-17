@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuMethods {
-    public static String loggedUser ="";
+    public static String loggedUser = "";
     public static boolean gameRunning = false;
     public static Integer earnedPoints = 0;
 
@@ -14,11 +14,10 @@ public class MenuMethods {
             System.out.println("Register and/or log in first");
         } else {
             Menu.correctData = true;
-            GameTimer timer = new GameTimer();
-            timer.startTimer();
+            GameTimer.startTimer();
             System.out.println("The game has begun!");
             System.out.println("You win and lose 1 point for every correct and incorrect answer respectively");
-            System.out.println("Enter 1 if the said Phrase is a pokemon or 2 if it's a Java expression");
+            System.out.println("Enter 1 if the phrase is a Pokemon or 2 if it's a Java expression");
             while (gameRunning) {
                 ArrayList randomPhraseData = Queries.getRandomPhrase();
                 String randomPhrase = String.format("What is %s", randomPhraseData.get(0));
@@ -35,15 +34,12 @@ public class MenuMethods {
                 int userAnswer = userResponse.nextInt();
                 if (userAnswer == correctAnswer) {
                     earnedPoints++;
-                    String roundWon = String.format("Congrats, you earned a point, in this seasson so far you earned %s points!\n", earnedPoints);
-                    System.out.println(roundWon);
+                    System.out.println("CORRECT! \n");
                 } else {
                     earnedPoints--;
-                    String roundLost = String.format("Sadly your answer was incorrect, in this session so far you earned %s points!\n", earnedPoints);
-                    System.out.println(roundLost);
+                    System.out.println("INCORRECT!\n");
                 }
             }
-
         }
     }
 
@@ -58,7 +54,6 @@ public class MenuMethods {
     }
 
     public static void registration() {
-        Menu.correctData = true;
         System.out.print("Enter username: ");
         Scanner username = new Scanner(System.in);
         String un = username.next();
@@ -68,6 +63,7 @@ public class MenuMethods {
         Hash hashPw = new Hash();
         String hashedPassW = hashPw.HashPass(pw);
         Queries.registerAccount(un, hashedPassW);
+        Menu.printMenu();
     }
 
     public static void login() {
@@ -76,7 +72,7 @@ public class MenuMethods {
         Scanner logInUsername = new Scanner(System.in);
         String loginName = logInUsername.next();
         String userExist = Queries.checkUserExist(loginName);
-        if (userExist != "error"){
+        if (userExist != "error") {
             System.out.print("Enter your password: ");
             Scanner loginPassword = new Scanner(System.in);
             String loginPw = loginPassword.next();

@@ -1,10 +1,8 @@
 package com.javamon;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.TreeMap;
-import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class Queries {
     public static String registerAccount(String username, String password) {
@@ -22,12 +20,12 @@ public class Queries {
         namesHighScoreFromDb = UseDb.runQuery(query, "name");
         String query2 = "SELECT score FROM users ORDER BY score DESC LIMIT 10";
         highScoreFromDb = UseDb.runQuery(query2, "score");
-        for (int i=0; i<namesHighScoreFromDb.size(); i++) {
-                scores.put(namesHighScoreFromDb.get(i), highScoreFromDb.get(i));
+        for (int i = 0; i < namesHighScoreFromDb.size(); i++) {
+            scores.put(namesHighScoreFromDb.get(i), highScoreFromDb.get(i));
         }
-        scores.forEach((key,value) -> {
-                    System.out.println(key + " : " + value + "\n");
-                });
+        scores.forEach((key, value) -> {
+            System.out.println(key + " : " + value + "\n");
+        });
 
 
         return scores;
@@ -55,7 +53,7 @@ public class Queries {
     }
 
     public static ArrayList<String> getRandomPhrase() {
-        String nameQuery = String.format("SELECT name, type FROM phrase  ORDER BY random() LIMIT 1");
+        String nameQuery = "SELECT name, type FROM phrase  ORDER BY random() LIMIT 1;";
         ArrayList<String> randomPhrase = UseDb.runQuery(nameQuery, "name");
 
         String typeQuery = String.format("SELECT type FROM phrase WHERE name = '%s';", randomPhrase.get(0));
@@ -95,9 +93,4 @@ public class Queries {
         ArrayList<String> myScore = UseDb.runQuery(query, "score");
         return myScore;
     }
-
-    public static void getJavaclass() {
-        UseDb.runQuery("SELECT name FROM phrase WHERE type = 'java' ORDER BY random() LIMIT 1", "name");
-    }
-
 }
