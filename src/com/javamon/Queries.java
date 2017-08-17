@@ -73,18 +73,26 @@ public class Queries {
     }
 
 
-    public static String checkUserExist(String userName) {
+    public static Boolean checkLoginData(String userName, String password) {
         String query = String.format("SELECT name FROM users WHERE name = '%s';", userName);
-        ArrayList<String> list_b = UseDb.runQuery(query, "name");
-        try {
-            return list_b.get(0);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.print("Enter your password: ");
-            Scanner fakeInput = new Scanner(System.in);
-            String fakeData = fakeInput.next();
-            System.out.println("Invalid username or password");
-            MenuMethods.login();
-            return "error";
+        String queryPw = String.format("SELECT password FROM users WHERE name = '%s';", userName);
+
+        ArrayList uName = UseDb.runQuery(query, "name");
+        ArrayList pWord = UseDb.runQuery(queryPw, "password");
+
+        if (pWord.isEmpty()) {
+            return false;
+        }
+        Boolean pwCheck;
+        if (uName.isEmpty()) {
+            uName.add(0, "fake");
+        }
+        pwCheck = Hash.CheckHash(password, (String) pWord.get(0));
+        if (pwCheck) {
+            return true;
+        } else {
+            System.out.println("Wrong username or password!");
+            return false;
         }
     }
 

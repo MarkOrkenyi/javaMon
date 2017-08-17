@@ -54,7 +54,8 @@ public class MenuMethods {
     }
 
     public static void registration() {
-        System.out.print("Enter username: ");
+
+        /*System.out.print("Enter username: ");
         Scanner username = new Scanner(System.in);
         String un = username.next();
         System.out.print("Enter password: ");
@@ -63,31 +64,18 @@ public class MenuMethods {
         Hash hashPw = new Hash();
         String hashedPassW = hashPw.HashPass(pw);
         Queries.registerAccount(un, hashedPassW);
-        Menu.printMenu();
+        Menu.printMenu();*/
     }
 
     public static void login() {
-
+        Scanner userInput = new Scanner(System.in);
         System.out.print("Enter your username: ");
-        Scanner logInUsername = new Scanner(System.in);
-        String loginName = logInUsername.next();
-        String userExist = Queries.checkUserExist(loginName);
-        if (userExist != "error") {
-            System.out.print("Enter your password: ");
-            Scanner loginPassword = new Scanner(System.in);
-            String loginPw = loginPassword.next();
-            Queries hashedPwFromDb = new Queries();
-            String pwFromDb = hashedPwFromDb.getPasswordHash(loginName);
-            Hash.CheckHash(loginPw, pwFromDb);
-        } else {
-            login();
-        }
-        if (Menu.userLoggedInSuccess) {
-            String LoggedInUserName = loginName;
-            System.out.println(LoggedInUserName + " logged in");
-            loggedUser = LoggedInUserName;
-        }
-        Menu.printMenu();
-
+        String loginNameInput = userInput.nextLine();
+        System.out.print("Enter your password: ");
+        String passwordInput = userInput.nextLine();
+        Boolean loginSuccess = Queries.checkLoginData(loginNameInput, passwordInput);
+         if(!loginSuccess) {
+             System.out.println("Wrong username or password!");
+         }
     }
 }
