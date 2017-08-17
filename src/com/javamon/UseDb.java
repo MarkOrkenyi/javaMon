@@ -10,13 +10,8 @@ class UseDb {
             Personal userData = new Personal();
             String username = userData.getUsername();
             String password = userData.getPassword();
-            String dbUrl = userData.getUrl();
-
-            String url = dbUrl;
-            Connection conn = DriverManager.getConnection(url,username,password
-            );
-
-
+            String url = userData.getUrl();
+            Connection conn = DriverManager.getConnection(url, username, password);
             Statement stmt = conn.createStatement();
             ResultSet rs;
             try {
@@ -25,19 +20,16 @@ class UseDb {
                 while (rs.next()) {
                     String addToList = rs.getString(columnName);
                     results.add(addToList);
-
                 }
                 return results;
-            } catch (SQLException e){
+            } catch (SQLException e) {
                 if (e.getSQLState().equals("23505")) {
                     System.out.println("Username already taken, choose another one!");
                     MenuMethods.registration();
                 }
-            }
-            finally {
+            } finally {
                 conn.close();
             }
-
         } catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());

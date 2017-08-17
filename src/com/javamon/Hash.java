@@ -5,8 +5,7 @@ import static com.javamon.BCrypt.*;
 public class Hash {
 
     public String HashPass (String password) {
-        String hashedPw = hashpw(password, gensalt(10));
-        return hashedPw;
+        return hashpw(password, gensalt(10));
     }
 
     public static void CheckHash (String candidate, String hashed) {
