@@ -58,8 +58,8 @@ public class Queries {
 
 
     public static void updateUserScore() {
-        String nameQuery = String.format("SELECT name, type FROM phrase  ORDER BY random() LIMIT 1");
-        UseDb.runQuery(nameQuery, "name");
+        String nameQuery = String.format("UPDATE users SET score = score+'%d' WHERE name = '%s';", MenuMethods.earnedPoints, MenuMethods.loggedUser);
+        UseDb.runQuery(nameQuery, "score");
     }
 
 

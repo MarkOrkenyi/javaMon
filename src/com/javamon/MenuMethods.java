@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuMethods {
-
+    public static String loggedUser ="";
     public static boolean gameRunning = false;
     public static Integer earnedPoints = 0;
 
     public static void startGame() {
-
-        if (Menu.userLoggedInSuccess) {
+        System.out.println(loggedUser);
+        if (loggedUser.length() == 0) {
             System.out.println("Register and/or log in first");
         } else {
             Menu.correctData = true;
@@ -30,27 +30,25 @@ public class MenuMethods {
                 }
 
                 Scanner userResponse = new Scanner(System.in);
-                System.out.println(randomPhrase);
+                System.out.println("**" + randomPhrase + "**\n");
                 System.out.println("1: Pokemon, 2: Java expression");
                 int userAnswer = userResponse.nextInt();
                 if (userAnswer == correctAnswer) {
                     earnedPoints++;
-                    String roundWon = String.format("Congrats, you earned a point, in this seasson so far you earned %s points!", earnedPoints);
+                    String roundWon = String.format("Congrats, you earned a point, in this seasson so far you earned %s points!\n", earnedPoints);
                     System.out.println(roundWon);
                 } else {
                     earnedPoints--;
-                    String roundLost = String.format("Sadly your answer was incorrect, in this session so far you earned %s points!", earnedPoints);
+                    String roundLost = String.format("Sadly your answer was incorrect, in this session so far you earned %s points!\n", earnedPoints);
                     System.out.println(roundLost);
                 }
-
-
-
             }
 
         }
     }
 
     public static void highScores() {
+
         Menu.correctData = true;
         System.out.println("highscore");
     }
@@ -69,7 +67,6 @@ public class MenuMethods {
     }
 
     public static void login() {
-        Menu.correctData = true;
 
         System.out.print("Enter your username: ");
         Scanner logInUsername = new Scanner(System.in);
@@ -88,7 +85,9 @@ public class MenuMethods {
         if (Menu.userLoggedInSuccess) {
             String LoggedInUserName = loginName;
             System.out.println(LoggedInUserName + " logged in");
+            loggedUser = LoggedInUserName;
         }
+        Menu.printMenu();
 
     }
 }

@@ -15,6 +15,7 @@ public class GameTimer {
                 MenuMethods.gameRunning = false;
                 String earnedPoints = String.format("Congrats, you earned %s points, it has been added to your high score", MenuMethods.earnedPoints);
                 System.out.println(earnedPoints);
+                Queries.updateUserScore();
                 System.exit(1);
 
             }
