@@ -48,9 +48,8 @@ public class MenuMethods {
     }
 
     public static void highScores() {
-
-        Menu.correctData = true;
-        System.out.println("highscore");
+        Queries.getHighScore();
+        Menu.printMenu();
     }
 
     public static void userScore() {

@@ -8,26 +8,38 @@ import java.util.Map;
 
 public class Queries {
     public static String registerAccount(String username, String password) {
-        String query = String.format("INSERT INTO users(name, password, score) VALUES ('%s', '%s', 0);",username,password);
+        String query = String.format("INSERT INTO users(name, password, score) VALUES ('%s', '%s', 0);", username, password);
         UseDb.runQuery(query, "name");
         return "success";
     }
-    /*public static TreeMap getHighscore() {
-        Map<String, Integer> usersScores = new TreeMap<>();
-        String name;
-        int score;
-        String query = String.format("SELECT name FROM users ORDER BY score DESC LIMIT 10;");
-        ArrayList<String> scoreName = UseDb.runQuery(query, "password");
-        String query2 = String.format("SELECT score FROM users ORDER BY score DESC LIMIT 10;");
-        ArrayList<Integer> scores = UseDb.runQuery(query2, "score");
-        return "seggem";
-    }*/
+
+    public static LinkedHashMap getHighScore() {
+        ArrayList namesHighScoreFromDb;
+        ArrayList highScoreFromDb;
+        LinkedHashMap scores = new LinkedHashMap();
+
+        String query = "SELECT name FROM users ORDER BY score DESC LIMIT 10;";
+        namesHighScoreFromDb = UseDb.runQuery(query, "name");
+        String query2 = "SELECT score FROM users ORDER BY score DESC LIMIT 10";
+        highScoreFromDb = UseDb.runQuery(query2, "score");
+        for (int i=0; i<namesHighScoreFromDb.size(); i++) {
+                scores.put(namesHighScoreFromDb.get(i), highScoreFromDb.get(i));
+        }
+        scores.forEach((key,value) -> {
+                    System.out.println(key + " : " + value + "\n");
+                });
+
+
+        return scores;
+    }
+
     public static void updateScore(String username) {
-        String query = String.format("UPDATE users SET score = score + 1 WHERE name = '%s';",username);
+        String query = String.format("UPDATE users SET score = score + 1 WHERE name = '%s';", username);
         UseDb.runQuery(query, "name");
     }
+
     public static String getPasswordHash(String userName) {
-        String query = String.format("SELECT password FROM users WHERE name = '%s';",userName);
+        String query = String.format("SELECT password FROM users WHERE name = '%s';", userName);
         ArrayList<String> list_a = UseDb.runQuery(query, "password");
         try {
             if (list_a.size() > 0) {
@@ -35,7 +47,7 @@ public class Queries {
             } else {
                 return "Login failed";
             }
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             MenuMethods.login();
             return "login failed";
         }
@@ -64,7 +76,7 @@ public class Queries {
 
 
     public static String checkUserExist(String userName) {
-        String query = String.format("SELECT name FROM users WHERE name = '%s';",userName);
+        String query = String.format("SELECT name FROM users WHERE name = '%s';", userName);
         ArrayList<String> list_b = UseDb.runQuery(query, "name");
         try {
             return list_b.get(0);
@@ -83,4 +95,9 @@ public class Queries {
         ArrayList<String> myScore = UseDb.runQuery(query, "score");
         return myScore;
     }
+
+    public static void getJavaclass() {
+        UseDb.runQuery("SELECT name FROM phrase WHERE type = 'java' ORDER BY random() LIMIT 1", "name");
+    }
+
 }
