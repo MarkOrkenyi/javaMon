@@ -11,15 +11,16 @@ public class Queries {
         UseDb.runQuery(query, "name");
         return "success";
     }
-    public static TreeMap getHighscore() {
-        /*Map<String, Integer> usersScores = new TreeMap<>();
+    /*public static TreeMap getHighscore() {
+        Map<String, Integer> usersScores = new TreeMap<>();
         String name;
         int score;
         String query = String.format("SELECT name FROM users ORDER BY score DESC LIMIT 10;");
         ArrayList<String> scoreName = UseDb.runQuery(query, "password");
         String query2 = String.format("SELECT score FROM users ORDER BY score DESC LIMIT 10;");
-        ArrayList<Integer> scores = UseDb.runQuery(query2, "score");*/
-    }
+        ArrayList<Integer> scores = UseDb.runQuery(query2, "score");
+        return "seggem";
+    }*/
     public static void updateScore(String username) {
         String query = String.format("UPDATE users SET score = score + 1 WHERE name = '%s';",username);
         UseDb.runQuery(query, "name");
@@ -34,7 +35,7 @@ public class Queries {
                 return "Login failed";
             }
         } catch(IllegalArgumentException e) {
-            Menu.printMenu();
+            MenuMethods.login();
             return "login failed";
         }
 
@@ -50,7 +51,7 @@ public class Queries {
             Scanner fakeInput = new Scanner(System.in);
             String fakeData = fakeInput.next();
             System.out.println("Invalid username or password");
-            Menu.printMenu();
+            MenuMethods.login();
             return "error";
         }
     }

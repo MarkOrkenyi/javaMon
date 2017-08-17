@@ -31,7 +31,7 @@ class UseDb {
             } catch (SQLException e){
                 if (e.getSQLState().equals("23505")) {
                     System.out.println("Username already taken, choose another one!");
-                    Menu.printMenu();
+                    MenuMethods.registration();
                 }
             }
             finally {
