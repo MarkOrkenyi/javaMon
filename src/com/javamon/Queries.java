@@ -1,8 +1,10 @@
 package com.javamon;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-
-import java.util.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.TreeMap;
+import java.util.Map;
 
 public class Queries {
     public static String registerAccount(String username, String password) {
@@ -52,6 +54,27 @@ public class Queries {
 
     }
 
+    public static ArrayList<String> getRandomPhrase() {
+        String nameQuery = String.format("SELECT name, type FROM phrase  ORDER BY random() LIMIT 1");
+        ArrayList<String> randomPhrase = UseDb.runQuery(nameQuery, "name");
+
+        String typeQuery = String.format("SELECT type FROM phrase WHERE name = '%s';", randomPhrase.get(0));
+        ArrayList<String> phraseType = UseDb.runQuery(typeQuery, "type");
+
+        ArrayList<String> phraseDatas = new ArrayList<>(2);
+        phraseDatas.add(randomPhrase.get(0));
+        phraseDatas.add(phraseType.get(0));
+
+        return phraseDatas;
+    }
+
+
+    public static void updateUserScore() {
+        String nameQuery = String.format("UPDATE users SET score = score+'%d' WHERE name = '%s';", MenuMethods.earnedPoints, MenuMethods.loggedUser);
+        UseDb.runQuery(nameQuery, "score");
+    }
+
+
     public static String checkUserExist(String userName) {
         String query = String.format("SELECT name FROM users WHERE name = '%s';", userName);
         ArrayList<String> list_b = UseDb.runQuery(query, "name");
@@ -67,8 +90,10 @@ public class Queries {
         }
     }
 
-    public static void getPokemon() {
-        UseDb.runQuery("SELECT name FROM phrase WHERE type = 'pokemon' ORDER BY random() LIMIT 1", "name");
+    public static ArrayList getScoreOfLoggedUser() {
+        String query = String.format("SELECT score FROM users WHERE name = '%s';", MenuMethods.loggedUser);
+        ArrayList<String> myScore = UseDb.runQuery(query, "score");
+        return myScore;
     }
 
     public static void getJavaclass() {
