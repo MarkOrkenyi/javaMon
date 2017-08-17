@@ -32,6 +32,10 @@ public class MenuMethods {
                 System.out.println("**" + randomPhrase + "**\n");
                 System.out.println("1: Pokemon, 2: Java expression");
                 int userAnswer = userResponse.nextInt();
+                if (userAnswer != 1 || userAnswer != 2) {
+                    System.out.println("Enter 1 or 2");
+                    userAnswer = userResponse.nextInt();
+                }
                 if (userAnswer == correctAnswer) {
                     earnedPoints++;
                     System.out.println("CORRECT! \n");
