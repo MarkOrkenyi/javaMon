@@ -89,6 +89,8 @@ public class MenuMethods {
         Boolean loginSuccess = Queries.checkLoginData(loginNameInput, passwordInput);
         if (loginSuccess) {
             loggedUser = loginNameInput;
+        } else {
+            System.out.println("Wrong username or password! Try again!");
         }
     }
 }
