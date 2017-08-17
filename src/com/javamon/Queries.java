@@ -1,7 +1,6 @@
 package com.javamon;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.LinkedHashMap;
 
 public class Queries {
@@ -73,19 +72,17 @@ public class Queries {
     }
 
 
-    public static String checkUserExist(String userName) {
+    public static String checkAccountExist(String userName) {
         String query = String.format("SELECT name FROM users WHERE name = '%s';", userName);
         ArrayList<String> list_b = UseDb.runQuery(query, "name");
         try {
-            return list_b.get(0);
+            if (list_b != null) {
+                return list_b.get(0);
+            }
         } catch (IndexOutOfBoundsException e) {
-            System.out.print("Enter your password: ");
-            Scanner fakeInput = new Scanner(System.in);
-            String fakeData = fakeInput.next();
-            System.out.println("Invalid username or password");
-            MenuMethods.login();
             return "error";
         }
+        return "success";
     }
 
     public static ArrayList getScoreOfLoggedUser() {

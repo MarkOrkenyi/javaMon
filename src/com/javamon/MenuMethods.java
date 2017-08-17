@@ -54,6 +54,7 @@ public class MenuMethods {
     }
 
     public static void registration() {
+        /*
         System.out.print("Enter username: ");
         Scanner username = new Scanner(System.in);
         String un = username.next();
@@ -64,6 +65,31 @@ public class MenuMethods {
         String hashedPassW = hashPw.HashPass(pw);
         Queries.registerAccount(un, hashedPassW);
         Menu.printMenu();
+        */
+        System.out.print("Enter username: ");
+        Scanner regInput = new Scanner(System.in);
+        String un;
+        String pw;
+        un = regInput.nextLine();
+        if((un.length() < 6)) {
+            System.out.println("At least 6 character long! Please try again!");
+            registration();
+        }
+        if (un.equals(Queries.checkAccountExist(un))) {
+            System.out.println("Already exist!!");
+            registration();
+        }
+        System.out.print("Enter password: ");
+        pw = regInput.nextLine();
+        if((pw.length() < 6)) {
+            System.out.println("At least 6 character long! Please try again!");
+            registration();
+        }
+        Hash hashPw = new Hash();
+        String hashedPassW = hashPw.HashPass(pw);
+        Queries.registerAccount(un, hashedPassW);
+        System.out.println("Account " + un + " created!");
+        Menu.printMenu();
     }
 
     public static void login() {
@@ -71,7 +97,7 @@ public class MenuMethods {
         System.out.print("Enter your username: ");
         Scanner logInUsername = new Scanner(System.in);
         String loginName = logInUsername.next();
-        String userExist = Queries.checkUserExist(loginName);
+        String userExist = Queries.checkAccountExist(loginName);
         if (userExist != "error") {
             System.out.print("Enter your password: ");
             Scanner loginPassword = new Scanner(System.in);
