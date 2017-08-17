@@ -10,7 +10,7 @@ public class MenuMethods {
 
     public static void startGame() {
         System.out.println(loggedUser);
-        if (loggedUser.length() == 0) {
+        if (loggedUser.isEmpty()) {
             System.out.println("Register and/or log in first");
         } else {
             Menu.correctData = true;
@@ -55,39 +55,40 @@ public class MenuMethods {
 
     public static void registration() {
         System.out.print("Enter username: ");
-        Scanner username = new Scanner(System.in);
-        String un = username.next();
+        Scanner regInput = new Scanner(System.in);
+        String un;
+        String pw;
+        un = regInput.nextLine();
+        if ((un.length() < 6)) {
+            System.out.println("At least 6 character long! Please try again!");
+            registration();
+        }
+        if (un.equals(Queries.checkAccountExist(un))) {
+            System.out.println("Already exist!!");
+            registration();
+        }
         System.out.print("Enter password: ");
-        Scanner password = new Scanner(System.in);
-        String pw = password.next();
+        pw = regInput.nextLine();
+        if ((pw.length() < 6)) {
+            System.out.println("At least 6 character long! Please try again!");
+            registration();
+        }
         Hash hashPw = new Hash();
         String hashedPassW = hashPw.HashPass(pw);
         Queries.registerAccount(un, hashedPassW);
+        System.out.println("Account " + un + " created!");
         Menu.printMenu();
     }
 
     public static void login() {
-
+        Scanner userInput = new Scanner(System.in);
         System.out.print("Enter your username: ");
-        Scanner logInUsername = new Scanner(System.in);
-        String loginName = logInUsername.next();
-        String userExist = Queries.checkUserExist(loginName);
-        if (userExist != "error") {
-            System.out.print("Enter your password: ");
-            Scanner loginPassword = new Scanner(System.in);
-            String loginPw = loginPassword.next();
-            Queries hashedPwFromDb = new Queries();
-            String pwFromDb = hashedPwFromDb.getPasswordHash(loginName);
-            Hash.CheckHash(loginPw, pwFromDb);
-        } else {
-            login();
+        String loginNameInput = userInput.nextLine();
+        System.out.print("Enter your password: ");
+        String passwordInput = userInput.nextLine();
+        Boolean loginSuccess = Queries.checkLoginData(loginNameInput, passwordInput);
+        if (loginSuccess) {
+            loggedUser = loginNameInput;
         }
-        if (Menu.userLoggedInSuccess) {
-            String LoggedInUserName = loginName;
-            System.out.println(LoggedInUserName + " logged in");
-            loggedUser = LoggedInUserName;
-        }
-        Menu.printMenu();
-
     }
 }
