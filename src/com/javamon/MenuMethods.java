@@ -21,8 +21,8 @@ public class MenuMethods {
             while (gameRunning) {
                 ArrayList randomPhraseData = Queries.getRandomPhrase();
                 String randomPhrase = String.format("What is %s", randomPhraseData.get(0));
-                Integer correctAnswer;
-                if (randomPhraseData.get(1) == "Pokemon") {
+                int correctAnswer;
+                if (randomPhraseData.get(1).equals("pokemon")) {
                     correctAnswer = 1;
                 } else {
                     correctAnswer = 2;

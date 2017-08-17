@@ -8,7 +8,8 @@ import java.awt.event.ActionListener;
 public class GameTimer {
     public static void startTimer() {
         int delay = 10000; //milliseconds
-        int gameTime = delay / 30000;
+        int gameTime = delay / 1000;
+        System.out.println();
         MenuMethods.gameRunning = true;
         System.out.println("Game time: " + gameTime + " seconds");
         ActionListener taskPerformer = evt -> {
