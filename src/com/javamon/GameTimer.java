@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.event.*;
 public class GameTimer {
     public static void startTimer(){
-        int delay = 1000; //milliseconds
+        int delay = 10000; //milliseconds
         int gametime = delay/1000;
         System.out.println("Game time: " + gametime + " seconds");
         ActionListener taskPerformer = new ActionListener() {

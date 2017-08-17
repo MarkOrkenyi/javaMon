@@ -1,13 +1,16 @@
 package com.javamon;
 
+import java.sql.ResultSet;
 import java.util.Scanner;
 
 public class Menu {
 
-    public static void printMenu () {
-        boolean incorrectData = true;
+    public static boolean userLoggedInSuccess = false;
+    public static boolean correctData = false;
 
-        while (incorrectData == true ) {
+    public static void printMenu() {
+
+        while (correctData == false ) {
             String menuItem = "1.) Start game\n" +
                     "2.) High scores\n" +
                     "3.) Registration\n" +
@@ -22,23 +25,16 @@ public class Menu {
                 int enteredNum = userInput.nextInt();
                 if (enteredNum == 1) {
                     //starts game
-                    incorrectData = false;
-                    System.out.println("start");
-                    GameTimer timer = new GameTimer();
-                    timer.startTimer();
-
+                    MenuMethods.startGame();
                 } else if (enteredNum == 2) {
                     // shows high score
-                    incorrectData = false;
-                    System.out.println("highscore");
+                    MenuMethods.highScores();
                 } else if (enteredNum == 3) {
                     // user registration
-                    incorrectData = false;
-                    System.out.println("reg");
+                    MenuMethods.registration();
                 } else if (enteredNum == 4) {
                     // user login
-                    incorrectData = false;
-                    System.out.print("login");
+                    MenuMethods.login();
                 } else if (enteredNum == 0) {
                     System.out.println("thanks for playing JavaMon");
                     System.exit(0);
