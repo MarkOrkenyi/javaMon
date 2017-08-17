@@ -1,5 +1,6 @@
 package com.javamon;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class MenuMethods {
@@ -10,8 +11,7 @@ public class MenuMethods {
             System.out.println("Register and/or log in first");
         } else {
             Menu.correctData = true;
-            GameTimer timer = new GameTimer();
-            timer.startTimer();
+            GameTimer.startTimer();
         }
     }
 
@@ -24,10 +24,10 @@ public class MenuMethods {
         Menu.correctData = true;
         System.out.print("Enter username: ");
         Scanner username = new Scanner(System.in);
-        String un = username.next();
+        String un = username.nextLine();
         System.out.print("Enter password: ");
         Scanner password = new Scanner(System.in);
-        String pw = password.next();
+        String pw = password.nextLine();
         Hash hashPw = new Hash();
         String hashedPassW = hashPw.HashPass(pw);
         Queries.registerAccount(un, hashedPassW);
@@ -38,21 +38,22 @@ public class MenuMethods {
 
         System.out.print("Enter your username: ");
         Scanner logInUsername = new Scanner(System.in);
-        String loginName = logInUsername.next();
+        String loginName = logInUsername.nextLine();
         String userExist = Queries.checkUserExist(loginName);
-        if (userExist != "error"){
+        if (!Objects.equals(userExist, "error")){
             System.out.print("Enter your password: ");
             Scanner loginPassword = new Scanner(System.in);
-            String loginPw = loginPassword.next();
-            Queries hashedPwFromDb = new Queries();
-            String pwFromDb = hashedPwFromDb.getPasswordHash(loginName);
+
+            String loginPw = loginPassword.nextLine();
+            String pwFromDb = Queries.getPasswordHash(loginName);
             Hash.CheckHash(loginPw, pwFromDb);
         } else {
             login();
         }
         if (Menu.userLoggedInSuccess) {
-            String LoggedInUserName = loginName;
-            System.out.println(LoggedInUserName + " logged in");
+            System.out.printf("Logged in as %s%n", loginName);
+            Menu.correctData = false;
+            Menu.printMenu();
         }
 
     }
