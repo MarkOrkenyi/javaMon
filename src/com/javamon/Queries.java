@@ -1,5 +1,6 @@
 package com.javamon;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -40,6 +41,27 @@ public class Queries {
         }
 
     }
+
+    public static ArrayList<String> getRandomPhrase() {
+        String nameQuery = String.format("SELECT name, type FROM phrase  ORDER BY random() LIMIT 1");
+        ArrayList<String> randomPhrase = UseDb.runQuery(nameQuery, "name");
+
+        String typeQuery = String.format("SELECT type FROM phrase WHERE name = '%s';", randomPhrase.get(0));
+        ArrayList<String> phraseType = UseDb.runQuery(typeQuery, "type");
+
+        ArrayList<String> phraseDatas = new ArrayList<>(2);
+        phraseDatas.add(randomPhrase.get(0));
+        phraseDatas.add(phraseType.get(0));
+
+        return phraseDatas;
+    }
+
+
+    public static void updateUserScore() {
+        String nameQuery = String.format("SELECT name, type FROM phrase  ORDER BY random() LIMIT 1");
+        UseDb.runQuery(nameQuery, "name");
+    }
+
 
     public static String checkUserExist(String userName) {
         String query = String.format("SELECT name FROM users WHERE name = '%s';",userName);

@@ -1,8 +1,12 @@
 package com.javamon;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuMethods {
+
+    public static boolean gameRunning = false;
+    public static Integer earnedPoints = 0;
 
     public static void startGame() {
 
@@ -12,6 +16,37 @@ public class MenuMethods {
             Menu.correctData = true;
             GameTimer timer = new GameTimer();
             timer.startTimer();
+            System.out.println("The game has begun!");
+            System.out.println("You win and lose 1 point for every correct and incorrect answer respectively");
+            System.out.println("Enter 1 if the said Phrase is a pokemon or 2 if it's a Java expression");
+            while (gameRunning) {
+                ArrayList randomPhraseData = Queries.getRandomPhrase();
+                String randomPhrase = String.format("What is %s", randomPhraseData.get(0));
+                Integer correctAnswer;
+                if (randomPhraseData.get(1) == "Pokemon") {
+                    correctAnswer = 1;
+                } else {
+                    correctAnswer = 2;
+                }
+
+                Scanner userResponse = new Scanner(System.in);
+                System.out.println(randomPhrase);
+                System.out.println("1: Pokemon, 2: Java expression");
+                int userAnswer = userResponse.nextInt();
+                if (userAnswer == correctAnswer) {
+                    earnedPoints++;
+                    String roundWon = String.format("Congrats, you earned a point, in this seasson so far you earned %s points!", earnedPoints);
+                    System.out.println(roundWon);
+                } else {
+                    earnedPoints--;
+                    String roundLost = String.format("Sadly your answer was incorrect, in this session so far you earned %s points!", earnedPoints);
+                    System.out.println(roundLost);
+                }
+
+
+
+            }
+
         }
     }
 
