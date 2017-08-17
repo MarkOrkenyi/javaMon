@@ -21,9 +21,11 @@ public class MenuMethods {
             while (gameRunning) {
                 ArrayList randomPhraseData = Queries.getRandomPhrase();
                 String randomPhrase = String.format("What is %s", randomPhraseData.get(0));
-                Integer correctAnswer;
-                if (randomPhraseData.get(1) == "Pokemon") {
+                int correctAnswer;
+                System.out.println(randomPhraseData.get(1));
+                if (randomPhraseData.get(1).equals("pokemon")) {
                     correctAnswer = 1;
+                    System.out.println(correctAnswer);
                 } else {
                     correctAnswer = 2;
                 }
@@ -35,9 +37,11 @@ public class MenuMethods {
                 if(userAnswer == 1 || userAnswer == 2) {
                     if (userAnswer == correctAnswer) {
                         earnedPoints++;
+                        System.out.println(correctAnswer);
                         System.out.println("CORRECT! \n");
                     } else {
                         earnedPoints--;
+                        System.out.println(correctAnswer);
                         System.out.println("INCORRECT!\n");
                     }
                 }else {
