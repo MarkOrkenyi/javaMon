@@ -16,8 +16,8 @@ public class MenuMethods {
     }
 
     public static void highScores() {
-        Menu.correctData = true;
         Queries.getHighScore();
+        Menu.printMenu();
 
     }
 

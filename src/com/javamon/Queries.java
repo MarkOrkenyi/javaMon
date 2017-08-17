@@ -15,6 +15,7 @@ public class Queries {
         ArrayList namesHighScoreFromDb;
         ArrayList highScoreFromDb;
         LinkedHashMap scores = new LinkedHashMap();
+
         String query = "SELECT name FROM users ORDER BY score DESC LIMIT 10;";
         namesHighScoreFromDb = UseDb.runQuery(query, "name");
         String query2 = "SELECT score FROM users ORDER BY score DESC LIMIT 10";
@@ -22,7 +23,11 @@ public class Queries {
         for (int i=0; i<namesHighScoreFromDb.size(); i++) {
                 scores.put(namesHighScoreFromDb.get(i), highScoreFromDb.get(i));
         }
-        System.out.println(scores);
+        scores.forEach((key,value) -> {
+                    System.out.println(key + " : " + value + "\n");
+                });
+
+
         return scores;
     }
 
