@@ -3,6 +3,8 @@ import com.sun.org.apache.xpath.internal.SourceTree;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 public class GameTimer {
     public static void startTimer(){
         int delay = 10000; //milliseconds
@@ -16,6 +18,8 @@ public class GameTimer {
                 String earnedPoints = String.format("Congrats, you earned %s points, it has been added to your high score", MenuMethods.earnedPoints);
                 System.out.println(earnedPoints);
                 Queries.updateUserScore();
+                ArrayList myScore = Queries.getScoreOfLoggedUser();
+                System.out.println("Your total points: " + myScore.get(0));
                 System.exit(1);
 
             }

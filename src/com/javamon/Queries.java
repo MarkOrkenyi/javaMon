@@ -78,11 +78,9 @@ public class Queries {
         }
     }
 
-    public static void getPokemon() {
-        UseDb.runQuery("SELECT name FROM phrase WHERE type = 'pokemon' ORDER BY random() LIMIT 1", "name");
+    public static ArrayList getScoreOfLoggedUser() {
+        String query = String.format("SELECT score FROM users WHERE name = '%s';", MenuMethods.loggedUser);
+        ArrayList<String> myScore = UseDb.runQuery(query, "score");
+        return myScore;
     }
-    public static void getJavaclass() {
-        UseDb.runQuery("SELECT name FROM phrase WHERE type = 'java' ORDER BY random() LIMIT 1", "name");
-    }
-
 }
