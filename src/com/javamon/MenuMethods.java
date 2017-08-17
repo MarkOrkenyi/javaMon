@@ -53,6 +53,11 @@ public class MenuMethods {
         System.out.println("highscore");
     }
 
+    public static void userScore() {
+        ArrayList myScore = Queries.getScoreOfLoggedUser();
+        System.out.println("Your total points: " + myScore.get(0));
+    }
+
     public static void registration() {
         Menu.correctData = true;
         System.out.print("Enter username: ");

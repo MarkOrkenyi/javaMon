@@ -18,8 +18,7 @@ public class GameTimer {
                 String earnedPoints = String.format("Congrats, you earned %s points, it has been added to your high score", MenuMethods.earnedPoints);
                 System.out.println(earnedPoints);
                 Queries.updateUserScore();
-                ArrayList myScore = Queries.getScoreOfLoggedUser();
-                System.out.println("Your total points: " + myScore.get(0));
+                MenuMethods.userScore();
                 System.exit(1);
 
             }
