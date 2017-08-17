@@ -1,7 +1,6 @@
 package com.javamon;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.LinkedHashMap;
 
 public class Queries {
@@ -72,6 +71,17 @@ public class Queries {
         UseDb.runQuery(nameQuery, "score");
     }
 
+
+
+    public static String checkAccountExist(String userName) {
+        String query = String.format("SELECT name FROM users WHERE name = '%s';", userName);
+        ArrayList<String> list_b = UseDb.runQuery(query, "name");
+        try {
+            if (list_b != null) {
+                return list_b.get(0);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            return "error";
 
     public static Boolean checkLoginData(String userName, String password) {
         String query = String.format("SELECT name FROM users WHERE name = '%s';", userName);
