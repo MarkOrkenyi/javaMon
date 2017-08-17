@@ -54,7 +54,11 @@ public class MenuMethods {
 
     public static void userScore() {
         ArrayList myScore = Queries.getScoreOfLoggedUser();
-        System.out.println("Your total points: " + myScore.get(0));
+        if (myScore.get(0).equals("No user logged in!")) {
+            System.out.println("You have to log in first to check your score!");
+        } else {
+            System.out.println("Your total points: " + myScore.get(0));
+        }
     }
 
     public static void registration() {

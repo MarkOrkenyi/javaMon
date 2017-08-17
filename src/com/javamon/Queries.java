@@ -90,6 +90,9 @@ public class Queries {
     public static ArrayList getScoreOfLoggedUser() {
         String query = String.format("SELECT score FROM users WHERE name = '%s';", MenuMethods.loggedUser);
         ArrayList<String> myScore = UseDb.runQuery(query, "score");
+        if (myScore.isEmpty()) {
+            myScore.add(0,"No user logged in!");
+        }
         return myScore;
     }
 }
