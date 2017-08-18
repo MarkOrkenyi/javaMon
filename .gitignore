@@ -9,6 +9,9 @@
 .idea/**/tasks.xml
 .idea/dictionaries
 
+#unique files
+src/com/javamon/Personal.java
+
 # Sensitive or high-churn files:
 .idea/**/dataSources/
 .idea/**/dataSources.ids
@@ -50,11 +53,13 @@ fabric.properties
 
 ### Intellij Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
+.src/com/javamon/Personal.java
+
 
 *.iml
 .idea/
 # modules.xml
-# .idea/misc.xml
+.idea/
 # *.ipr
 
 # Sonarlint plugin
@@ -74,7 +79,9 @@ fabric.properties
 .mtj.tmp/
 
 # Package Files
+
 *.jar
+
 *.war
 *.ear
 *.zip
