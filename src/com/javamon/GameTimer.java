@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class GameTimer {
     public static void startTimer() {
-        int delay = 10000; //milliseconds
+        int delay = 30000; //milliseconds
         int gameTime = delay / 1000;
         System.out.println();
         MenuMethods.gameRunning = true;
