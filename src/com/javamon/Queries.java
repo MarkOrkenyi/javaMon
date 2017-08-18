@@ -22,10 +22,11 @@ public class Queries {
         for (int i = 0; i < namesHighScoreFromDb.size(); i++) {
             scores.put(namesHighScoreFromDb.get(i), highScoreFromDb.get(i));
         }
+        System.out.println();
         scores.forEach((key, value) -> {
-            System.out.println(key + " : " + value + "\n");
+            System.out.println(key + ": " + value + " point(s)");
         });
-
+        System.out.println();
 
         return scores;
     }
