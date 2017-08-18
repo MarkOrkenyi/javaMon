@@ -54,7 +54,10 @@ fabric.properties
 ### Intellij Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
 .src/com/javamon/Personal.java
+
+
 *.iml
+.idea/
 # modules.xml
 .idea/
 # *.ipr
@@ -76,6 +79,9 @@ fabric.properties
 .mtj.tmp/
 
 # Package Files
+
+*.jar
+
 *.war
 *.ear
 *.zip
@@ -85,4 +91,5 @@ fabric.properties
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+Personal.java
 # End of https://www.gitignore.io/api/java,intellij
